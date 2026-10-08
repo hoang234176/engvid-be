@@ -21,11 +21,13 @@ Thank you for your interest in contributing to **EngVid Backend (`engvid-be`)**!
 
 ## 2. Git Branching Strategy
 
-Our primary stable branch is **`main`**. 
+We follow a Gitflow-inspired branching workflow:
+- **`main`**: Production-ready branch. Only fully tested, completed releases are merged here from `develop`.
+- **`develop`**: Primary development and integration branch. All feature and fix branches branch off from `develop` and merge back into `develop`.
 
 > [!CAUTION]
-> **Direct commits to `main` are strictly forbidden!**
-> All changes must be proposed through a Pull Request on GitHub and require review and approval from the project owner before merging. All development work must take place on dedicated branches created from `main`.
+> **Direct commits to `main` and `develop` are strictly forbidden!**
+> All changes must be submitted via a Pull Request (PR) on GitHub targeting `develop`, requiring review and approval from the project owner before merging. Direct pushes to `main` are reserved exclusively for validated release milestones.
 
 ### Branch Naming Format
 Branch names must use lowercase **`kebab-case`** and follow a **3-tier hierarchy**:
@@ -126,12 +128,12 @@ Before submitting code, ensure it aligns with our documentation standards:
 
 ## 5. Pull Request (PR) Workflow
 
-1. **Update `main`:** Pull the latest changes from upstream `main`:
+1. **Update `develop`:** Pull the latest changes from upstream `develop`:
    ```bash
-   git checkout main
-   git pull origin main
+   git checkout develop
+   git pull origin develop
    ```
-2. **Create Branch:** Create a branch following the 3-tier naming convention:
+2. **Create Branch:** Create a branch off `develop` following the 3-tier naming convention:
    ```bash
    git checkout -b feat/video-processing/hls-transcoding
    ```
@@ -147,4 +149,4 @@ Before submitting code, ensure it aligns with our documentation standards:
    git commit -m "feat(video-processing): add hls transcoding pipeline"
    git push origin feat/video-processing/hls-transcoding
    ```
-6. **Open PR:** Submit a Pull Request into `main` with a clear description and testing checklist.
+6. **Open PR:** Submit a Pull Request into **`develop`** with a clear description and testing checklist.

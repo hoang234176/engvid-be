@@ -21,11 +21,13 @@ Cảm ơn bạn đã quan tâm và tham gia đóng góp cho dự án **EngVid Ba
 
 ## 2. Chiến Lược Phân Nhánh Git (Branching Strategy)
 
-Nhánh chính thức và ổn định của dự án là **`main`**.
+Dự án áp dụng mô hình phân nhánh theo luồng Gitflow:
+- **`main`**: Nhánh production ổn định. Chỉ gộp các bản phát hành (release) đã hoàn thiện và kiểm thử kỹ lưỡng từ `develop`.
+- **`develop`**: Nhánh tích hợp và phát triển chính. Tất cả nhánh tính năng (`feat`) và sửa lỗi (`fix`) đều tách ra từ `develop` và tạo PR gộp về `develop`.
 
 > [!CAUTION]
-> **Tuyệt đối nghiêm cấm commit trực tiếp vào nhánh `main`!**
-> Mọi thay đổi bắt buộc phải được tạo qua Pull Request (PR) trên GitHub và phải được chủ dự án phê duyệt (review & approve) mới được phép gộp (merge). Tất cả công việc phát triển phải thực hiện trên các nhánh riêng rẽ được tách ra từ `main`.
+> **Tuyệt đối nghiêm cấm commit trực tiếp vào cả hai nhánh `main` và `develop`!**
+> Mọi thay đổi bắt buộc phải được tạo qua Pull Request (PR) trên GitHub hướng vào nhánh **`develop`**, đồng thời phải được chủ dự án phê duyệt (review & approve) mới được phép gộp (merge). Nhánh `main` chỉ nhận code khi hoàn tất một mốc phát hành (release).
 
 ### Định Dạng Đặt Tên Nhánh
 Tên nhánh sử dụng chữ thường định dạng **`kebab-case`** và tuân theo **cấu trúc 3 cấp**:
@@ -126,12 +128,12 @@ Trước khi gửi mã nguồn lên kho lưu trữ, hãy đảm bảo tuân th�
 
 ## 5. Quy Trình Tạo Pull Request (PR Workflow)
 
-1. **Đồng bộ `main` mới nhất:**
+1. **Đồng bộ `develop` mới nhất:**
    ```bash
-   git checkout main
-   git pull origin main
+   git checkout develop
+   git pull origin develop
    ```
-2. **Tạo nhánh làm việc:** Đặt tên đúng chuẩn 3 cấp:
+2. **Tạo nhánh làm việc:** Tách nhánh từ `develop` và đặt tên đúng chuẩn 3 cấp:
    ```bash
    git checkout -b feat/video-processing/hls-transcoding
    ```
@@ -147,4 +149,4 @@ Trước khi gửi mã nguồn lên kho lưu trữ, hãy đảm bảo tuân th�
    git commit -m "feat(video-processing): add hls transcoding pipeline"
    git push origin feat/video-processing/hls-transcoding
    ```
-6. **Mở PR:** Gửi Pull Request vào nhánh `main`, kèm mô tả tóm tắt những việc đã làm.
+6. **Mở PR:** Gửi Pull Request vào nhánh **`develop`**, kèm mô tả tóm tắt những việc đã làm.
